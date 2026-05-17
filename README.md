@@ -1,7 +1,8 @@
 # TEAM 7 
-# smartLibrary
+# MoMo SMS Data Processing System
 
-Smart Library is a web-based enterprise library management system designed to help libraries manage books, students, borrowing records, and library operations efficiently.
+## Project Overview
+This system processes MTN Mobile Money (MoMo) SMS transaction data. It parses XML-formatted SMS messages, extracts transaction details, and stores them in a structured MySQL database for querying and analysis.
 
 # Team Members
 - Divin Semana  
@@ -13,6 +14,14 @@ Smart Library is a web-based enterprise library management system designed to he
 ![image](momo.jpg)
 # ScrumBoard - Project
 [View Project scrumboard here](https://github.com/users/dsemana/projects/3/views/1)
+
+## Database Design
+
+### How to Run the SQL Script
+1. Make sure MySQL is installed and running
+2. Open your terminal or MySQL Workbench
+3. Run: `mysql -u root -p < database/database_setup.sql`
+4. The database `momo_sms` will be created with all tables and sample data
 
 # ERD Design
 ![image_erd](erd.png)
