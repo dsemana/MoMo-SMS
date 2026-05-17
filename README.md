@@ -13,3 +13,6 @@ Smart Library is a web-based enterprise library management system designed to he
 ![image](momo.jpg)
 # ScrumBoard - Project
 [View Project scrumboard here](https://github.com/users/dsemana/projects/3/views/1)
+
+# ERD Design
+![image_erd](erd.png)
