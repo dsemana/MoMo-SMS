@@ -63,3 +63,47 @@ CREATE INDEX idx_transactions_date ON transactions(transaction_date);
 CREATE INDEX idx_transactions_category ON transactions(category_id);
 CREATE INDEX idx_transactions_sender ON transactions(sender_id);
 CREATE INDEX idx_transactions_receiver ON transactions(receiver_id);
+
+INSERT INTO users (full_name, phone_number) VALUES
+('Jean Niyonzima', '0788000001'),
+('Aline Uwase', '0788000002'),
+('Eric Mugisha', '0788000003'),
+('Claudine Mukamana', '0788000004'),
+('Patrick Habimana', '0788000005');
+
+INSERT INTO transaction_categories (category_name, description) VALUES
+('Money Transfer', 'Transfer from one MoMo user to another'),
+('Cash Out', 'Withdrawal from MoMo account'),
+('Airtime Purchase', 'Buying airtime using MoMo'),
+('Bill Payment', 'Payment of utilities or services'),
+('Merchant Payment', 'Payment to a business merchant');
+
+INSERT INTO transactions 
+(momo_reference, sender_id, receiver_id, category_id, amount, currency, transaction_date, status, raw_message)
+VALUES
+('TXN001', 1, 2, 1, 5000.00, 'RWF', '2026-05-01 10:00:00', 'completed', 'Sample MoMo transfer SMS'),
+('TXN002', 2, 3, 1, 2500.00, 'RWF', '2026-05-01 11:30:00', 'completed', 'Sample MoMo transfer SMS'),
+('TXN003', 3, NULL, 3, 1000.00, 'RWF', '2026-05-02 09:15:00', 'completed', 'Sample airtime purchase SMS'),
+('TXN004', 4, NULL, 2, 15000.00, 'RWF', '2026-05-02 14:20:00', 'completed', 'Sample cash out SMS'),
+('TXN005', 5, NULL, 4, 8000.00, 'RWF', '2026-05-03 16:45:00', 'completed', 'Sample bill payment SMS');
+
+INSERT INTO system_logs (transaction_id, log_level, log_message) VALUES
+(1, 'INFO', 'Transaction processed successfully'),
+(2, 'INFO', 'Transaction processed successfully'),
+(3, 'INFO', 'Airtime transaction categorized'),
+(4, 'WARNING', 'Cash out transaction missing receiver'),
+(5, 'INFO', 'Bill payment transaction processed');
+
+INSERT INTO tags (tag_name) VALUES
+('personal'),
+('business'),
+('utility'),
+('airtime'),
+('withdrawal');
+
+INSERT INTO transaction_tags (transaction_id, tag_id) VALUES
+(1, 1),
+(2, 1),
+(3, 4),
+(4, 5),
+(5, 3);
