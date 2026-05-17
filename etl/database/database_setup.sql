@@ -107,19 +107,3 @@ INSERT INTO transaction_tags (transaction_id, tag_id) VALUES
 (3, 4),
 (4, 5),
 (5, 3);
-
--- CREATE
-INSERT INTO users (full_name, phone_number)
-VALUES ('Test User', '0788999999');
-
--- READ
-SELECT * FROM transactions;
-
--- UPDATE
-UPDATE transactions
-SET status = 'reviewed'
-WHERE transaction_id = 1;
-
--- DELETE
-DELETE FROM transaction_tags
-WHERE transaction_id = 1 AND tag_id = 1;
