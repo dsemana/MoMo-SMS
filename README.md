@@ -24,4 +24,4 @@ This system processes MTN Mobile Money (MoMo) SMS transaction data. It parses XM
 4. The database `momo_sms` will be created with all tables and sample data
 
 # ERD Design
-![image_erd](erd.png)
+![image_erd](docs/erd_diagram.png)
