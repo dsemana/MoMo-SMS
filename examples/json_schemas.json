@@ -1,91 +1,87 @@
 {
   "user": {
-    "user_id": "USR-7f3a29bc",
-    "phone_number": "+250788123456",
-    "full_name": "Amara Ndiaye",
-    "account_type": "PERSONAL",
-    "kyc_status": "VERIFIED",
-    "created_at": "2024-03-15T08:22:10Z",
-    "is_active": true
+    "user_id": 1,
+    "full_name": "Jean Niyonzima",
+    "phone_number": "0788000001",
+    "created_at": "2026-05-18 10:00:00"
   },
-
   "transaction_category": {
-    "category_id": 12,
-    "category_name": "Mobile Money Transfer",
-    "category_code": "MMT",
-    "parent_category": "FINANCIAL_SERVICES",
-    "description": "Peer-to-peer transfers via mobile money platforms"
+    "category_id": 1,
+    "category_name": "Money Transfer",
+    "description": "Transfer from one MoMo user to another"
   },
-
-  "transaction_tag": {
-    "tag_id": 301,
-    "transaction_id": "TXN-9e1c4f02a3d8",
-    "category_id": 12,
-    "tagged_at": "2025-11-04T14:36:01Z",
-    "tagged_by": "system-auto-classifier"
-  },
-
-  "system_log": {
-    "log_id": 88241,
-    "processed_at": "2025-11-04T14:35:24Z",
-    "processing_status": "SUCCESS",
-    "raw_xml_reference": "s3://logs-bucket/2025/11/04/MOMO-2025-884721.xml",
-    "source_system": "MOMO_GATEWAY_V2",
-    "error_count": 0,
-    "notes": null
-  },
-
-  "transaction_complete": {
-    "transaction_id": "TXN-9e1c4f02a3d8",
-    "external_transaction_id": "MOMO-2025-884721",
-    "amount": 75000.00,
+  "transaction": {
+    "transaction_id": 1,
+    "momo_reference": "TXN001",
+    "sender_id": 1,
+    "receiver_id": 2,
+    "category_id": 1,
+    "amount": 5000.00,
     "currency": "RWF",
-    "transaction_date": "2025-11-04T14:35:22Z",
-    "status": "COMPLETED",
-    "description": "School fees payment - term 2",
+    "transaction_date": "2026-05-01 10:00:00",
+    "status": "completed",
+    "raw_message": "Sample MoMo transfer SMS"
+  },
+  "system_log": {
+    "log_id": 1,
+    "transaction_id": 1,
+    "log_level": "INFO",
+    "log_message": "Transaction processed successfully",
+    "created_at": "2026-05-18 10:01:00"
+  },
+  "tag": {
+    "tag_id": 1,
+    "tag_name": "personal"
+  },
+  "transaction_tag": {
+    "transaction_id": 1,
+    "tag_id": 1
+  },
+  "transaction_complete": {
+    "transaction_id": 1,
+    "momo_reference": "TXN001",
+    "amount": 5000.00,
+    "currency": "RWF",
+    "transaction_date": "2026-05-01 10:00:00",
+    "status": "completed",
+    "raw_message": "Sample MoMo transfer SMS",
     "sender": {
-      "user_id": "USR-7f3a29bc",
-      "full_name": "Amara Ndiaye",
-      "phone_number": "+250788123456",
-      "account_type": "PERSONAL",
-      "kyc_status": "VERIFIED",
-      "is_active": true
+      "user_id": 1,
+      "full_name": "Jean Niyonzima",
+      "phone_number": "0788000001"
     },
     "receiver": {
-      "user_id": "USR-a14d88ef",
-      "full_name": "Kigali Academy Ltd",
-      "phone_number": "+250722987654",
-      "account_type": "BUSINESS",
-      "kyc_status": "VERIFIED",
-      "is_active": true
+      "user_id": 2,
+      "full_name": "Aline Uwase",
+      "phone_number": "0788000002"
     },
     "category": {
-      "category_id": 12,
-      "category_name": "Mobile Money Transfer",
-      "category_code": "MMT",
-      "parent_category": "FINANCIAL_SERVICES"
+      "category_id": 1,
+      "category_name": "Money Transfer",
+      "description": "Transfer from one MoMo user to another"
     },
     "tags": [
       {
-        "tag_id": 301,
-        "category_id": 12,
-        "tagged_at": "2025-11-04T14:36:01Z",
-        "tagged_by": "system-auto-classifier"
-      },
-      {
-        "tag_id": 302,
-        "category_id": 5,
-        "tagged_at": "2025-11-04T15:10:44Z",
-        "tagged_by": "USR-admin-004"
+        "tag_id": 1,
+        "tag_name": "personal"
       }
     ],
-    "system_log": {
-      "log_id": 88241,
-      "processed_at": "2025-11-04T14:35:24Z",
-      "processing_status": "SUCCESS",
-      "source_system": "MOMO_GATEWAY_V2",
-      "error_count": 0,
-      "notes": null
-    }
+    "system_logs": [
+      {
+        "log_id": 1,
+        "log_level": "INFO",
+        "log_message": "Transaction processed successfully",
+        "created_at": "2026-05-18 10:01:00"
+      }
+    ]
+  },
+  "sql_to_json_mapping": {
+    "users": "user, transaction_complete.sender, transaction_complete.receiver",
+    "transaction_categories": "transaction_category, transaction_complete.category",
+    "transactions": "transaction, transaction_complete root object",
+    "system_logs": "system_log, transaction_complete.system_logs[]",
+    "tags": "tag, transaction_complete.tags[]",
+    "transaction_tags": "transaction_tag links transactions to tags"
   }
 }
+
