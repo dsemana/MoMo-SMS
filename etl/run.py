@@ -10,7 +10,9 @@ POST   /transactions        create a new record
 PUT    /transactions/{id}   update a record
 DELETE /transactions/{id}   delete a record
 
-
+Authentication: HTTP Basic Auth
+  username: admin
+  password: momo2024
 
 Run:  python server.py
 """
@@ -34,7 +36,21 @@ NEXT_ID = max(tx['id'] for tx in TRANSACTIONS) + 1 if TRANSACTIONS else 1
 print(f"[boot] Loaded {len(TRANSACTIONS)} transactions.", flush=True)
 
 
+VALID_USERS = {
+    'admin': 'momo2024',
+}
 
+
+def _check_auth(handler):
+    auth_header = handler.headers.get('Authorization', '')
+    if not auth_header.startswith('Basic '):
+        return False
+    try:
+        decoded = base64.b64decode(auth_header[6:]).decode('utf-8')
+        username, password = decoded.split(':', 1)
+        return VALID_USERS.get(username) == password
+    except Exception:
+        return False
 
 
 def _send_json(handler, status, payload):
@@ -78,6 +94,9 @@ class MoMoHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        if not _check_auth(self):
+            _send_unauth(self)
+            return
 
         parsed = urlparse(self.path)
         path = parsed.path.rstrip('/')
@@ -115,6 +134,9 @@ class MoMoHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         global NEXT_ID
 
+        if not _check_auth(self):
+            _send_unauth(self)
+            return
 
         path = urlparse(self.path).path.rstrip('/')
 
@@ -143,6 +165,9 @@ class MoMoHandler(BaseHTTPRequestHandler):
         _send_json(self, 201, new_tx)
 
     def do_PUT(self):
+        if not _check_auth(self):
+            _send_unauth(self)
+            return
 
         path = urlparse(self.path).path.rstrip('/')
         m = re.fullmatch(r'/transactions/(\d+)', path)
@@ -168,6 +193,9 @@ class MoMoHandler(BaseHTTPRequestHandler):
         _send_json(self, 200, tx)
 
     def do_DELETE(self):
+        if not _check_auth(self):
+            _send_unauth(self)
+            return
 
         path = urlparse(self.path).path.rstrip('/')
         m = re.fullmatch(r'/transactions/(\d+)', path)
@@ -188,6 +216,7 @@ class MoMoHandler(BaseHTTPRequestHandler):
 def run(port):
     server = HTTPServer(('0.0.0.0', port), MoMoHandler)
     print(f"[server] MoMo API running on http://localhost:{port}")
+    print(f"[server] Credentials: admin / momo2024")
     print(f"[server] Press Ctrl+C to stop.")
     try:
         server.serve_forever()
