@@ -26,7 +26,7 @@ import re
 from urllib.parse import urlparse, parse_qs
 
 sys.path.insert(0, os.path.dirname(__file__))
-from parse_xml import parse_xml
+from dsa.parse_xml import parse_xml
 
 XML_PATH = os.path.join(os.path.dirname(__file__), 'modified_sms_v2.xml')
 
