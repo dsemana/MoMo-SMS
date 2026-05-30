@@ -167,5 +167,5 @@ The API was tested using curl/Postman with the following scenarios:
 * Successful PUT request
 * Successful DELETE request
 
-Screenshots of all test cases are available in the `screenshots/` directory.
+
 
