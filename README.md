@@ -23,6 +23,9 @@ This system processes MTN Mobile Money (MoMo) SMS transaction data. It parses XM
 3. Run: `mysql -u root -p < database/database_setup.sql`
 4. The database `momo_sms` will be created with all tables and sample data
 
+# TEAM PARTICIPATION SHEET FOR ASSIGNMENT 1
+https://docs.google.com/spreadsheets/d/12mGHfkK9EDo0l4f1JxvtC8j6Oeb3x_txF4DYhoOykZg/edit?usp=sharing
+
 # ERD Design
 ![image_erd](docs/erd_diagram.png)
 
@@ -166,6 +169,9 @@ The API was tested using curl/Postman with the following scenarios:
 * Successful POST request
 * Successful PUT request
 * Successful DELETE request
+
+# TEAM PARTICIPATION SHEET FOR ASSIGNMENT 2
+https://docs.google.com/spreadsheets/d/1bS8WsEO3V847LA4GKCr5lOYXPVG3EBzOJu61bmRShHM/edit?usp=sharing
 
 
 
